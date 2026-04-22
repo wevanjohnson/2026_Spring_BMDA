@@ -1,6 +1,6 @@
 # High Throughput Biomedical Data Analysis
 
-## date: Spring 2026, April-June
+## Spring 2026, April-June
 
 ## COURSE DESCRIPTION:
 
@@ -34,7 +34,7 @@ Cell Phone: (801) 472-6951
 **Instructor:** Dr. Johnson will be available virtually by appointment only. Email or text him any time to set up a time to meet!
 
 ## GitHub REPOSITORY:
-The course GitHub repository is located at: https://github.com/wevanjohnson/2025_Spring_FDS. This page will contain all information in this syllabus plus more. Homework assignments and other information pertinent to this course will be posted on this web site, which will be updated frequently, so you should visit it regularly.
+The course GitHub repository is located at: https://github.com/wevanjohnson/2026_Spring_BMDA. This page will contain all information in this syllabus plus more. Homework assignments and other information pertinent to this course will be posted on this web site, which will be updated frequently, so you should visit it regularly.
 
 ## CANVAS:
 There will also be a Canvas course page for this course. This is where you will be able to access links to past lectures, and also turn in your homework (and track your HW grades). The rest of the course materials will only be posted on GitHub.
