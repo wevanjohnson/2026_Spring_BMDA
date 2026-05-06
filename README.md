@@ -23,7 +23,7 @@ This class will be taught virtually using a synchronous remote modality, althoug
 ## ZOOM LINK AND CLASSROOM:
 Zoom Meeting ID for all sessions is Meeting ID: 929 7046 3934, with the password: 850292, or use the following direct link (the link is also available though the course GitHub page): https://rutgers.zoom.us/j/92970463934?pwd=wVF7nGblCNaAMon3fFlRwboSgEiDUg.1
 
-There will also be available for the students to congregate for each lecture, with a co-intructor present. The room this semester is TBD.  
+There will also be available for the students to congregate for each lecture, with a co-intructor present. The room this semester is MSB B619.  
 
 ### FACULTY AND STAFF: 
 W. Evan Johnson, Ph.D.\
