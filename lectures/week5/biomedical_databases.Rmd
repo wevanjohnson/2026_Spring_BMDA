@@ -13,7 +13,7 @@ header-includes:
   - \usepackage{xcolor}
   - \setbeamercolor{frametitle}{fg=black}
   - \usepackage{graphicx}
-  - \usebackgroundtemplate{\includegraphics[width=\paperwidth]{varFigs/RH_template_Page_2.png}}
+  - \usebackgroundtemplate{\includegraphics[width=\paperwidth]{dbFigs/RH_template_Page_2.png}}
   - \addtobeamertemplate{frametitle}{\vspace*{.25in}}{\vspace*{.25in}}
   - \setbeamerfont{frametitle}{size=\huge}
   - \usepackage{tikz}
@@ -429,7 +429,7 @@ done
 
 ## Batch script (SLURM)
 
-\small
+\footnotesize
 ```{bash, eval=F}
 #!/bin/bash
 #SBATCH --job-name=microbiome_download
@@ -446,11 +446,12 @@ do
 	gzip ${accs[i]}*
 done
 ```
+\normalsize
 Save as a file and use `sbatch` to submit
 
 ## Batch array (SLURM)
 
-\footnotesize
+\scriptsize
 ```{bash, eval=F}
 #!/bin/bash
 #SBATCH --job-name=microbiome_download
@@ -470,7 +471,7 @@ acc_number=${accs[$SLURM_ARRAY_TASK_ID]}
 
 fastq-dump --gzip $acc_number
 ```
-
+\normalsize
 Save as a file and use `sbatch` to submit
 
 ## Gene Expression Data
@@ -484,7 +485,7 @@ Save as a file and use `sbatch` to submit
 
 
 ## GEOquery example 
-
+\footnotesize
 ```{r, eval=F}
 # Load the geoquery library: BiocManager::install("GEOquery")
 library(GEOquery)
