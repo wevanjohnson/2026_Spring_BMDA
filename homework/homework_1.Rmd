@@ -1,0 +1,114 @@
+---
+title: "Homework 1: Data Science Foundations, Sequencing Formats, QC, and HIV/TB Data Extraction"
+author:   100 Points Total
+date: Due May 26, 2026
+output: pdf_document
+---
+
+This assignment covers the foundational material from the first few weeks of class: the data science process, sequencing technology and file formats, quality control, and the very first step of the HIV/TB RNA-seq pipeline -- downloading the raw reads from SRA and inspecting them with FastQC/MultiQC. All questions are multiple choice and will be administered as a Canvas quiz.
+
+Please save your code/notes for each part of the assignment. Your instructor may request it.
+
+Submit your completed assignment via the designated homework (Quiz) submission site on Canvas.
+
+## Course Foundations
+
+\begin{enumerate}
+
+  \item Which of the following best describes \emph{structured} data?
+  \begin{enumerate}
+    \item Data organized into rows and columns with a predefined schema (e.g., a gene-by-sample counts matrix or a relational database table)
+    \item Free-text clinical notes
+    \item Raw FASTQ sequencing reads
+    \item Microscopy images
+  \end{enumerate}
+
+\end{enumerate}
+
+## Sequencing Technology
+
+\begin{enumerate}
+  \setcounter{enumi}{2}
+
+  \item Illumina short-read sequencing is based on which chemistry?
+  \begin{enumerate}
+    \item Sequencing by synthesis (reversible terminator nucleotides imaged after each cycle)
+    \item Sanger chain-termination with capillary electrophoresis
+    \item Nanopore translocation of single DNA strands through a protein pore
+    \item Pyrosequencing on bead-immobilized templates
+  \end{enumerate}
+
+  \item Compared with single-end sequencing, paired-end sequencing has which of the following advantages? (Select the best answer.)
+  \begin{enumerate}
+    \item Reads come from both ends of each fragment, giving better mapping in repetitive regions and an estimate of insert size
+    \item It produces longer individual reads (kilobases instead of hundreds of bases)
+    \item It eliminates the need for adapter trimming
+    \item It requires no library preparation
+  \end{enumerate}
+
+  \item A study wants to comprehensively call protein-coding variants in 200 individuals on a tight budget. Which sequencing design is the most cost-effective fit?
+  \begin{enumerate}
+    \item Whole-exome sequencing
+    \item Deep (30x) whole-genome sequencing
+    \item Low-coverage whole-genome sequencing
+    \item Long-read Nanopore sequencing of the entire genome
+  \end{enumerate}
+
+\end{enumerate}
+
+## File Formats and Quality Scores
+
+\begin{enumerate}
+  \setcounter{enumi}{5}
+
+  \item What is the key difference between a FASTA file and a FASTQ file?
+  \begin{enumerate}
+    \item FASTQ stores a per-base quality score for every base; FASTA does not
+    \item FASTA is binary; FASTQ is text
+    \item FASTA contains aligned reads; FASTQ contains unaligned reads
+    \item FASTQ is used only for proteins; FASTA is used only for nucleotides
+  \end{enumerate}
+
+  \item A base has a Sanger PHRED quality score of $Q = 30$. What is the corresponding probability that the base call is \emph{incorrect}?
+  \begin{enumerate}
+    \item 1 in 1,000 (0.001)
+    \item 1 in 100 (0.01)
+    \item 1 in 10 (0.1)
+    \item 1 in 10,000 (0.0001)
+  \end{enumerate}
+
+  \item In a standard FASTQ record, the four lines correspond (in order) to:
+  \begin{enumerate}
+    \item @-prefixed read identifier; the nucleotide sequence; a `+' separator (optionally with the identifier); the per-base quality string
+    \item Sequence; quality string; identifier; separator
+    \item Identifier; quality string; separator; sequence
+    \item Quality string; sequence; identifier; pair flag
+  \end{enumerate}
+
+\end{enumerate}
+
+## HIV/TB Data Extraction and QC
+
+\begin{enumerate}
+  \setcounter{enumi}{8}
+
+  \item You will download the 33 FASTQ files for the HIV/TB dataset from SRA using \texttt{sratoolkit}. The SRR accessions are listed in the \texttt{SRR\_Acc\_List\_hivtb.txt} file. Which of the following is the correct usage of \texttt{fastq-dump} to download a single accession and gzip-compress the output in one step?
+  \begin{enumerate}
+    \item fastq-dump --gzip SRR12345678
+    \item fastq-dump --compress gzip SRR12345678
+    \item fastq-dump SRR12345678 --gzip-compress
+    \item fastq-dump --SRR SRR12345678 --gzip
+    \item fastq-dump SRR12345678 | gzip > SRR12345678.fastq.gz
+  \end{enumerate}
+
+  \item You want to download all 33 HIV/TB FASTQ files \emph{in parallel} on Amarel using a SLURM job array, then run FastQC on every file and aggregate the results with MultiQC. Which of the following statements about that pipeline is \emph{TRUE}?
+  \begin{enumerate}
+    \item \texttt{\#SBATCH --array=0-32} creates 33 array tasks indexed 0 through 32, and \texttt{multiqc .} aggregates the per-sample FastQC reports into a single interactive summary.
+    \item \texttt{\#SBATCH --array=0-32} creates 32 array tasks, and MultiQC re-runs quality control with stricter thresholds than FastQC.
+    \item \texttt{\#SBATCH --array=33} creates 33 array tasks, and MultiQC trims adapters from the FASTQ files.
+    \item \texttt{\#SBATCH --ntasks=33} is the correct directive for parallel array downloads, and MultiQC aligns reads to a reference genome.
+  \end{enumerate}
+
+
+  \item Go ahead and download all of the HIV/TB FASTQ files into your home directory or scratch directory on Amarel. How large is the SRR6305400 file? 
+\end{enumerate}
