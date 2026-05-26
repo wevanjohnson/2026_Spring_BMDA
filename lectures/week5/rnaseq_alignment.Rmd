@@ -128,15 +128,15 @@ Now we can count reads hitting genes. Approaches/software:
 
 ```{r, eval=FALSE}
 fCountsList = featureCounts(
-  "rna_seq/alignments/R01_10_short.bam",
-  annot.ext="rna_seq_files/genome/genes.chr1_120-150M.gtf",
+  "example_data/alignments/R01_10_short.bam",
+  annot.ext="example_data/genome/genes.chr1_120-150M.gtf",
   isGTFAnnotationFile=TRUE)
 
 featureCounts = cbind(fCountsList$annotation[,1],
                       fCountsList$counts)
 
 write.table(featureCounts,
-    "rna_seq/alignments/R01_10_short.features.txt",
+    "example_data/alignments/R01_10_short.features.txt",
     sep="\t", col.names=FALSE, row.names=FALSE, quote=FALSE)
 ```
 
