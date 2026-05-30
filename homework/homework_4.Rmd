@@ -1,0 +1,74 @@
+---
+title: "Homework 4: Independent Biomedical Data Analysis Project"
+author: GSND 5340Q, BMDA -- 150 Points Total
+date: "Multiple Due Dates (Report + Video: Friday June 19, 2026; Peer Comments: Friday June 26, 2026)"
+output: pdf_document
+---
+
+## **Objective**
+Take a real biomedical dataset from raw data through interpretation, using one (or more) of the methods we covered this semester. This is a small but **complete data analysis project.** You will present your analysis in a recorded video and provide constructive feedback on your classmates' projects.
+
+## **Instructions**
+
+### **1. Pick a Dataset and an Analysis Type**
+Choose one of the following analysis families that we covered in class (or another one you clear with the instructor):
+
+- **GWAS / variant calling** -- alignment, variant calling, association or family/segregation analysis, interpretation of disease-relevant variants.
+- **Bulk RNA-seq differential expression** -- counts, normalization, DESeq2 / edgeR / limma, pathway analysis.
+- **Microbiome / metagenomics** -- 16S or shotgun reads, taxonomic profiling, alpha / beta diversity, differential abundance.
+- **Single-cell RNA-seq** -- QC, normalization, clustering, marker/DE.
+- **Another -omics method** (proteomics, methylation, ATAC-seq, etc.) -- get instructor approval first.
+
+Where to find data:
+
+- A dataset provided in lecture (asthma microbiome, HIV/TB RNA-seq, Ogden's Syndrome variants, TBnanostring, ...). You may **not** repeat the exact analysis we did in class -- pick a new biological question, a new comparison, or a new method.
+- A public repository: SRA, GEO, dbGaP, TCGA, GTEx, ENCODE, Qiita, ImmPort, etc.
+- A dataset from your own research, with PI permission.
+
+### **2. R Markdown Report (60 points)**
+Submit a `.Rmd` (or `.qmd`) that, when knit, walks the reader through your analysis end-to-end. At minimum:
+
+- **Background and question** -- one short paragraph describing the dataset, the biological/clinical question, and why it matters.
+- **Data acquisition** -- how you got the data (download script, SRA accessions, GEO ID, dataset DOI). Include the code or SLURM script.
+- **Preprocessing / QC** -- normalization, filtering, batch correction, etc. as appropriate.
+- **Statistical analysis** -- the core method (DESeq2, limma, association test, alpha/beta diversity, clustering, ...) with a brief justification of *why* this method fits your question.
+- **Visualization** -- at least one publication-quality figure that supports your main finding.
+- **Interpretation** -- what does your top result mean biologically? Cite at least one supporting paper.
+- **Reproducibility** -- `sessionInfo()`, links to data, all code included in the Rmd.
+
+### **3. Video Presentation (40 points)**
+Record a **5-7 minute video** walking through your analysis. Cover:
+
+- The dataset and your question.
+- The pipeline (data $\to$ QC $\to$ analysis $\to$ result).
+- Your main finding and one figure that shows it.
+- Limitations and reasonable next steps.
+
+Post the video in the Canvas Chat section by **11:59 PM, Friday June 19, 2026**.
+
+### **4. Peer Review (50 points)**
+Watch at least **five** of your classmates' videos. For each:
+
+- Name one specific strength of the analysis.
+- Suggest one improvement -- an alternative method, an additional QC step, a confounder to check, a follow-up comparison.
+
+Document the videos you reviewed and your comments in the same `.Rmd` from part 2. Submit the updated `.Rmd` on Canvas by **11:59 PM, Friday June 26, 2026**.
+
+## **Grading Breakdown**
+
+| **Category** | **Points** |
+|----|----|
+| Reproducible R Markdown report with end-to-end analysis | 60 |
+| Video presentation with clear walkthrough of question, methods, and result | 40 |
+| Peer review: meaningful comments on five classmates' videos | 50 |
+| **Total** | **150** |
+
+## **Additional Notes**
+
+- This is a **data analysis** project, not just a plotting project. Your report must include a statistical or model-based step -- not only descriptive plots.
+- You may reuse code from lectures or earlier homework, but the question and dataset must be your own, or used in a different way than we did in class.
+- Be respectful and constructive in peer reviews -- the goal is to learn from each other.
+
+---
+
+*Happy analyzing!*

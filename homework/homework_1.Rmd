@@ -17,8 +17,8 @@ Submit your completed assignment via the designated homework (Quiz) submission s
 
   \item Which of the following best describes \emph{structured} data?
   \begin{enumerate}
-    \item Data organized into rows and columns with a predefined schema (e.g., a gene-by-sample counts matrix or a relational database table)
     \item Free-text clinical notes
+    \item Data organized into rows and columns with a predefined schema (e.g., a gene-by-sample counts matrix or a relational database table)
     \item Raw FASTQ sequencing reads
     \item Microscopy images
   \end{enumerate}
@@ -28,30 +28,30 @@ Submit your completed assignment via the designated homework (Quiz) submission s
 ## Sequencing Technology
 
 \begin{enumerate}
-  \setcounter{enumi}{2}
+  \setcounter{enumi}{1}
 
   \item Illumina short-read sequencing is based on which chemistry?
   \begin{enumerate}
-    \item Sequencing by synthesis (reversible terminator nucleotides imaged after each cycle)
     \item Sanger chain-termination with capillary electrophoresis
     \item Nanopore translocation of single DNA strands through a protein pore
+    \item Sequencing by synthesis (reversible terminator nucleotides imaged after each cycle)
     \item Pyrosequencing on bead-immobilized templates
   \end{enumerate}
 
   \item Compared with single-end sequencing, paired-end sequencing has which of the following advantages? (Select the best answer.)
   \begin{enumerate}
     \item Reads come from both ends of each fragment, giving better mapping in repetitive regions and an estimate of insert size
-    \item It produces longer individual reads (kilobases instead of hundreds of bases)
     \item It eliminates the need for adapter trimming
+    \item It produces longer individual reads (kilobases instead of hundreds of bases)
     \item It requires no library preparation
   \end{enumerate}
 
   \item A study wants to comprehensively call protein-coding variants in 200 individuals on a tight budget. Which sequencing design is the most cost-effective fit?
   \begin{enumerate}
-    \item Whole-exome sequencing
     \item Deep (30x) whole-genome sequencing
     \item Low-coverage whole-genome sequencing
     \item Long-read Nanopore sequencing of the entire genome
+    \item Whole-exome sequencing
   \end{enumerate}
 
 \end{enumerate}
@@ -59,13 +59,13 @@ Submit your completed assignment via the designated homework (Quiz) submission s
 ## File Formats and Quality Scores
 
 \begin{enumerate}
-  \setcounter{enumi}{5}
+  \setcounter{enumi}{4}
 
   \item What is the key difference between a FASTA file and a FASTQ file?
   \begin{enumerate}
-    \item FASTQ stores a per-base quality score for every base; FASTA does not
     \item FASTA is binary; FASTQ is text
     \item FASTA contains aligned reads; FASTQ contains unaligned reads
+    \item FASTQ stores a per-base quality score for every base; FASTA does not
     \item FASTQ is used only for proteins; FASTA is used only for nucleotides
   \end{enumerate}
 
@@ -73,16 +73,16 @@ Submit your completed assignment via the designated homework (Quiz) submission s
   \begin{enumerate}
     \item 1 in 1,000 (0.001)
     \item 1 in 100 (0.01)
-    \item 1 in 10 (0.1)
     \item 1 in 10,000 (0.0001)
+    \item 1 in 10 (0.1)
   \end{enumerate}
 
   \item In a standard FASTQ record, the four lines correspond (in order) to:
   \begin{enumerate}
-    \item @-prefixed read identifier; the nucleotide sequence; a `+' separator (optionally with the identifier); the per-base quality string
     \item Sequence; quality string; identifier; separator
     \item Identifier; quality string; separator; sequence
     \item Quality string; sequence; identifier; pair flag
+    \item @-prefixed read identifier; the nucleotide sequence; a `+' separator (optionally with the identifier); the per-base quality string
   \end{enumerate}
 
 \end{enumerate}
@@ -90,25 +90,31 @@ Submit your completed assignment via the designated homework (Quiz) submission s
 ## HIV/TB Data Extraction and QC
 
 \begin{enumerate}
-  \setcounter{enumi}{8}
+  \setcounter{enumi}{7}
 
   \item You will download the 33 FASTQ files for the HIV/TB dataset from SRA using \texttt{sratoolkit}. The SRR accessions are listed in the \texttt{SRR\_Acc\_List\_hivtb.txt} file. Which of the following is the correct usage of \texttt{fastq-dump} to download a single accession and gzip-compress the output in one step?
   \begin{enumerate}
-    \item fastq-dump --gzip SRR12345678
     \item fastq-dump --compress gzip SRR12345678
     \item fastq-dump SRR12345678 --gzip-compress
     \item fastq-dump --SRR SRR12345678 --gzip
     \item fastq-dump SRR12345678 | gzip > SRR12345678.fastq.gz
+    \item fastq-dump --gzip SRR12345678
   \end{enumerate}
 
   \item You want to download all 33 HIV/TB FASTQ files \emph{in parallel} on Amarel using a SLURM job array, then run FastQC on every file and aggregate the results with MultiQC. Which of the following statements about that pipeline is \emph{TRUE}?
   \begin{enumerate}
-    \item \texttt{\#SBATCH --array=0-32} creates 33 array tasks indexed 0 through 32, and \texttt{multiqc .} aggregates the per-sample FastQC reports into a single interactive summary.
     \item \texttt{\#SBATCH --array=0-32} creates 32 array tasks, and MultiQC re-runs quality control with stricter thresholds than FastQC.
+    \item \texttt{\#SBATCH --array=0-32} creates 33 array tasks indexed 0 through 32, and \texttt{multiqc .} aggregates the per-sample FastQC reports into a single interactive summary.
     \item \texttt{\#SBATCH --array=33} creates 33 array tasks, and MultiQC trims adapters from the FASTQ files.
     \item \texttt{\#SBATCH --ntasks=33} is the correct directive for parallel array downloads, and MultiQC aligns reads to a reference genome.
   \end{enumerate}
 
 
-  \item Go ahead and download all of the HIV/TB FASTQ files into your home directory or scratch directory on Amarel. How large is the SRR6305400 file? 
+  \item Go ahead and download all of the HIV/TB FASTQ files into your home directory or scratch directory on Amarel. How large is the gzipped \texttt{SRR6305400.fastq.gz} file (as reported by \texttt{ls -l} / \texttt{ls -lh})?
+  \begin{enumerate}
+    \item 412,387,629 bytes ($\sim$393 MB)
+    \item 3,521,476,108 bytes ($\sim$3.4 GB)
+    \item 956,264,153 bytes ($\sim$912 MB)
+    \item 1,243,889,201 bytes ($\sim$1.2 GB)
+  \end{enumerate}
 \end{enumerate}

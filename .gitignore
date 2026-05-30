@@ -1,0 +1,36 @@
+## Markdown log files
+*.log
+*/*.log
+*/*/*.log
+## R History files
+.Rhistory
+*/.Rhistory
+*/*/.Rhistory
+## DS_Store files
+*.DS_Store
+*/*.DS_Store
+*/*/*.DS_Store
+## other files that are made by R markdown or latex:
+*/*.nav
+*/*.aux
+*/*.snm
+*/*.toc
+*/*/*.nav
+*/*/*.aux
+*/*/*.snm
+*/*/*.toc
+
+## Hide this one for homework
+homework/Rmarkdown_example.Rmd
+homework/homework_1_solutions.*
+homework/homework_2_solutions.*
+homework/homework_3_solutions.*
+homework/homework_4_solutions.*
+homework/homework_1_solutions_files/
+homework/homework_2_solutions_files/
+homework/homework_3_solutions_files/
+homework/homework_4_solutions_files/
+lectures/week7/2025_06_microbiome.pptx
+lectures/week5/hivtb_download_align.Rmd
+lectures/week5/hivtb_download_align.html
+.Rproj.user
