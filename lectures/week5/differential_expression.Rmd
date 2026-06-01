@@ -114,9 +114,10 @@ counts <- read.table(
   "example_data/features_combined.txt", 
   sep="\t", header=T, row.names=1)
 meta_data <- read.table(
-  "example_data/meta_data.txt",
-  sep="\t", header=T, row.names=1)
-group <- meta_data$Disease
+  "example_data/hivtb_SRR_metadata.txt",
+  sep="\t", header=T, row.names=2)
+group <- meta_data$disease_status
+meta_data <- meta_data[match(colnames(counts),rownames(meta_data)),]
 ```
 
 ## Make a SummarizedExperiment
@@ -142,7 +143,7 @@ dge <- DGEList(counts=counts, group=group)
 #TMM normalization
 dge <- calcNormFactors(dge) 
 # Design matrix
-design<-model.matrix(~Disease, data=meta_data)
+design<-model.matrix(~disease_status, data=meta_data)
 #Estimates common, trended and tagwise dispersion
 dge<-estimateDisp(counts,design) 
 ```
@@ -197,14 +198,24 @@ Logcpm<-cpm(counts,log=TRUE)
 
 ## DESeq2 Example
 ```{r, include=F}
-meta_data$Disease = as.factor(meta_data$Disease)
+meta_data$disease_status = as.factor(meta_data$disease_status)
+
+#colData is a data frame of demographic/phenotypic data
+suppressMessages({suppressWarnings({
+dds <- DESeqDataSetFromMatrix(countData = counts, 
+                              colData=meta_data, 
+                              design=~disease_status)
+})})
 ```
 
-```{r}
+```{r, eval=F}
 #colData is a data frame of demographic/phenotypic data
 dds <- DESeqDataSetFromMatrix(countData = counts, 
                               colData=meta_data, 
-                              design=~Disease)
+                              design=~disease_status)
+```
+
+```{r}
 #Gene Filtering
 dds<-dds[rowSums(counts(dds))>100,] 
 ```
@@ -227,16 +238,16 @@ res[1:25,]
 ## Heatmap of DEGs
 ```{r, eval=F}
 # Make a Heatmap of DEGs
-mat = as.matrix(assay(se_hivtb,"counts")
+mat = as.matrix(assay(se_hivtb,"log_counts_cpm")
                 )[order(results(dds)[,6])[1:100],] 
                 # Using first 100 genes to simplify
 mat = t(scale(t(mat))) ## scale gene expression
-df=data.frame(Disease=colData(se_hivtb)$Disease) 
+df=data.frame(Disease=colData(se_hivtb)$disease_status) 
 ha = HeatmapAnnotation(df = df, 
                        col = list(Disease=c(
-                         "tb_hiv"="Red",
-                         "hiv_only"="Blue",
-                         "tb_hiv_art"="Green")))
+                         "TB-HIV"="Red",
+                         "HIV"="Blue",
+                         "TB-HIV-ART"="Green")))
 Heatmap(mat,show_row_names=F, show_column_names = F, 
         top_annotation = ha)
 ```
@@ -247,14 +258,14 @@ Heatmap(mat,show_row_names=F, show_column_names = F,
 # Make a Heatmap of DEGs
 mat = as.matrix(assay(se_hivtb,"log_counts_cpm")
                 )[order(results(dds)[,6])[1:100],] 
-                # Using first 1000 genes to simplify
+                # Using first 100 genes to simplify
 mat = t(scale(t(mat)))
-df=data.frame(Disease=colData(se_hivtb)$Disease) 
+df=data.frame(Disease=colData(se_hivtb)$disease_status) 
 ha = HeatmapAnnotation(df = df, 
                        col = list(Disease=c(
-                         "tb_hiv"="Red",
-                         "hiv_only"="Blue",
-                         "tb_hiv_art"="Green")))
+                         "TB-HIV"="Red",
+                         "HIV"="Blue",
+                         "TB-HIV-ART"="Green")))
 Heatmap(mat,show_row_names=F,
         show_column_names = F, 
         top_annotation = ha)

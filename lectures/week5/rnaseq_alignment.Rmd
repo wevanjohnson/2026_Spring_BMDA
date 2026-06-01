@@ -324,8 +324,8 @@ STAR --runThreadN 8 \
 ```
 
 
-## STAR alignment SLURM script -- asthma dataset
-\scriptsize
+## STAR SLURM script (slide 1 of 3)
+\footnotesize
 ```{bash, eval=F}
 #!/bin/bash
 #SBATCH --job-name=asthma_align
@@ -335,27 +335,27 @@ STAR --runThreadN 8 \
 #SBATCH --mem=12G
 #SBATCH --time=01:00:00
 
-# Paths
-WORKDIR=/scratch/$USER/asthma_data
-GENOME_INDEX=/scratch/$USER/star_index  # built in the previous slide
-
-mkdir -p $WORKDIR
-cd $WORKDIR
-
 # Load required modules
 module load sratoolkit
 module load FastQC
 module load STAR
 
+# Paths
+WORKDIR=/scratch/$USER/asthma_data
+GENOME_INDEX=/scratch/$USER/star_index  # built in the previous slide
+
+```
+
+## STAR SLURM script (slide 2 of 3)
+\footnotesize
+```{bash, eval=F}
+mkdir -p $WORKDIR
+cd $WORKDIR
+
 # Pick this task's SRR from the asthma accession list
 accs=( $(cat $SLURM_SUBMIT_DIR/SRR_Acc_List_asthma.txt) )
 acc_number=${accs[$SLURM_ARRAY_TASK_ID]}
-```
 
-
-## STAR alignment SLURM script -- asthma (cont.)
-\tiny
-```{bash, eval=F}
 # 1) Download FASTQ
 echo "[$acc_number] Downloading FASTQ ..."
 fastq-dump --gzip $acc_number
@@ -364,6 +364,12 @@ fastq-dump --gzip $acc_number
 mkdir -p fastqc
 echo "[$acc_number] Running FastQC ..."
 fastqc ${acc_number}.fastq.gz --outdir=fastqc/
+
+```
+
+## STAR SLURM script (slide 3 of 3)
+\footnotesize
+```{bash, eval=F}
 
 # 3) STAR alignment
 mkdir -p star_alignments/${acc_number}
@@ -379,7 +385,7 @@ echo "[$acc_number] STAR alignment completed."
 ```
 
 \normalsize
-Save as `align_asthma.slurm` and submit with `sbatch align_asthma.slurm`.
+Save as `align_asthma.slurm` and submit with `sbatch align_asthma.slurm`
 
 
 ## Your Turn -- HIV/TB Dataset (Homework)
